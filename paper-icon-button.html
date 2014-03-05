@@ -5,45 +5,57 @@ license that can be found in the LICENSE file.
 -->
 <!--
 /**
- * @module Quantum Paper Elements
- */
-/**
- * paper-icon-button enables you to place an image centered in a button.
+ * @group Quantum Paper Elements
+ *
+ * `paper-icon-button` is a button with an image placed at the center.
  *
  * Example:
  *
  *     <paper-icon-button src="star.png"></paper-icon-button>
  *
- * Polymer includes an icon set.  The property "icon" can be used
- * to specify which icon to use.
+ * `paper-icon-button` includes a default icon set.  Use `icon` to specify 
+ * which icon from the icon set to use.
  *
  * Example:
  *
  *     <paper-icon-button icon="menu"></paper-icon-button>
  *
- * @class paper-icon-button
+ * See <a href="core-iconset.html">core-iconset</a> for more information about 
+ * how to use a custom icon set.
+ *
+ * @element paper-icon-button
+ * @homepage github.io
  */
 -->
-<link rel="import" href="../polymer/polymer.html">
+
 <link rel="import" href="../core-icon/core-icon.html">
 
-<polymer-element name="paper-icon-button" extends="core-theme-aware" attributes="src index icon active">
+<polymer-element name="paper-icon-button" extends="core-theme-aware" attributes="src icon active">
+
   <template>
+  
     <link rel="stylesheet" href="paper-icon-button.css">
-    <core-icon src="{{src}}" index="{{index}}" icon="{{icon}}"><content></content></core-icon>
+    
+    <core-icon src="{{src}}" icon="{{icon}}"><content></content></core-icon>
+    
   </template>
+  
   <script>
+  
     Polymer('paper-icon-button', {
+      
       /**
-       * The URL of an image for the icon.
+       * The URL of an image for the icon.  Should not use `icon` property
+       * if are using this property.
        *
        * @attribute src
        * @type string
        * @default ''
        */
       src: '',
+      
       /**
-       * If true, border is placed around the button to indicate
+       * If true, border is placed around the button to indicate it's
        * active state.
        *
        * @attribute active
@@ -51,27 +63,24 @@ license that can be found in the LICENSE file.
        * @default false
        */
       active: false,
+      
       /**
-       * Specifies the icon from the Polymer icon set.
+       * Specifies the icon name or index in the set of icons available in
+       * the icon set.  Should not use `src` property if you are using this
+       * property.
        *
        * @attribute icon
        * @type string
        * @default ''
        */
       icon: '',
-      /**
-       * If a theme is applied that includes an icon set, the index of the 
-       * icon to display.
-       *
-       * @attribute index
-       * @type number
-       * @default -1
-       */     
-      index: -1,
+      
       activeChanged: function() {
-        // TODO(sjmiles): sugar this common case
         this.classList.toggle('selected', this.active);
       }
+      
     });
+    
   </script>
+  
 </polymer-element>
