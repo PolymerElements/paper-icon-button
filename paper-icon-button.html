@@ -25,12 +25,12 @@ license that can be found in the LICENSE file.
  */
 -->
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../polymer-ui-icon/polymer-ui-icon.html">
+<link rel="import" href="../core-icon/core-icon.html">
 
-<polymer-element name="paper-icon-button" extends="polymer-ui-theme-aware" attributes="src index icon active">
+<polymer-element name="paper-icon-button" extends="core-theme-aware" attributes="src index icon active">
   <template>
     <link rel="stylesheet" href="paper-icon-button.css">
-    <polymer-ui-icon src="{{src}}" index="{{index}}" icon="{{icon}}"><content></content></polymer-ui-icon>
+    <core-icon src="{{src}}" index="{{index}}" icon="{{icon}}"><content></content></core-icon>
   </template>
   <script>
     Polymer('paper-icon-button', {
