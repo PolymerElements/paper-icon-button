@@ -1,0 +1,77 @@
+<!--
+Copyright 2013 The Polymer Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<!--
+/**
+ * @module Quantum Paper Elements
+ */
+/**
+ * paper-icon-button enables you to place an image centered in a button.
+ *
+ * Example:
+ *
+ *     <paper-icon-button src="star.png"></paper-icon-button>
+ *
+ * Polymer includes an icon set.  The property "icon" can be used
+ * to specify which icon to use.
+ *
+ * Example:
+ *
+ *     <paper-icon-button icon="menu"></paper-icon-button>
+ *
+ * @class paper-icon-button
+ */
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer-ui-icon/polymer-ui-icon.html">
+
+<polymer-element name="paper-icon-button" extends="polymer-ui-theme-aware" attributes="src index icon active">
+  <template>
+    <link rel="stylesheet" href="paper-icon-button.css">
+    <polymer-ui-icon src="{{src}}" index="{{index}}" icon="{{icon}}"><content></content></polymer-ui-icon>
+  </template>
+  <script>
+    Polymer('paper-icon-button', {
+      /**
+       * The URL of an image for the icon.
+       *
+       * @attribute src
+       * @type string
+       * @default ''
+       */
+      src: '',
+      /**
+       * If true, border is placed around the button to indicate
+       * active state.
+       *
+       * @attribute active
+       * @type boolean
+       * @default false
+       */
+      active: false,
+      /**
+       * Specifies the icon from the Polymer icon set.
+       *
+       * @attribute icon
+       * @type string
+       * @default ''
+       */
+      icon: '',
+      /**
+       * If a theme is applied that includes an icon set, the index of the 
+       * icon to display.
+       *
+       * @attribute index
+       * @type number
+       * @default -1
+       */     
+      index: -1,
+      activeChanged: function() {
+        // TODO(sjmiles): sugar this common case
+        this.classList.toggle('selected', this.active);
+      }
+    });
+  </script>
+</polymer-element>
