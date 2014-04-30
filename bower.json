@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "polymer": "Polymer/polymer#master",
-    "core-icon": "Polymer/core-icon#master"
+    "core-icon": "Polymer/core-icon#master",
+    "paper-ink": "Polymer/paper-ink#master"
   }
 }

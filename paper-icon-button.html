@@ -32,14 +32,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  */
 -->
 
-<link rel="import" href="../core-icon/core-icon.html">
+<link href="../core-icon/core-icon.html" rel="import">
+<link href="../paper-ink/paper-ink.html" rel="import">
 
-<polymer-element name="paper-icon-button" extends="core-theme-aware" attributes="src icon active">
+<polymer-element name="paper-icon-button" attributes="src icon inkColor pressed disabled" tabindex="-1" on-tap="{{tapAction}}" on-down="{{downAction}}" on-up="{{upAction}}" on-focus="{{focusAction}}" on-blur="{{blurAction}}">
 
   <template>
   
     <link rel="stylesheet" href="paper-icon-button.css">
     
+    <paper-ink id="ink" color="{{inkColor}}"></paper-ink>
     <core-icon src="{{src}}" icon="{{icon}}"><content></content></core-icon>
     
   </template>
@@ -47,6 +49,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
   
     Polymer('paper-icon-button', {
+
+      publish: {
+
+        /**
+         * The color of the ink that spreads when the button is tapped.
+         *
+         * @attribute inkColor
+         * @type string
+         */
+         inkColor: { value: '#d3d3d3', reflect: true },
+
+         /**
+          * If true, the user is currently holding down the button.
+          *
+          * @attribute pressed
+          * @type boolean
+          * @default false
+          */
+         pressed: { value: false, reflect: true },
+
+         /**
+          * If true, the user cannot interact with this button.
+          *
+          * @attribute disabled
+          * @type boolean
+          * @default false
+          */
+         disabled: { value: false, reflect: true }
+
+      },
       
       /**
        * The URL of an image for the icon.  Should not use `icon` property
@@ -59,16 +91,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       src: '',
       
       /**
-       * If true, border is placed around the button to indicate it's
-       * active state.
-       *
-       * @attribute active
-       * @type boolean
-       * @default false
-       */
-      active: false,
-      
-      /**
        * Specifies the icon name or index in the set of icons available in
        * the icon set.  Should not use `src` property if you are using this
        * property.
@@ -78,11 +100,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        * @default ''
        */
       icon: '',
-      
-      activeChanged: function() {
-        this.classList.toggle('selected', this.active);
+
+      disabledChanged: function() {
+        if (this.disabled) {
+          this.removeAttribute('tabindex');
+        } else {
+          this.setAttribute('tabindex', -1);
+        }
+      },
+
+      waitForSpillCompleted: function(callback) {
+        this.async(callback, null, (this.$.ink.spillCompleted ? 0 : this.duration));
+      },
+
+      resetInk: function() {
+        this.pressed = false;
+        this.$.ink.reset();
+      },
+
+      insideButton: function(x, y) {
+        var rect = this.getBoundingClientRect();
+        return (rect.left <= x) && (x <= rect.right) && (rect.top <= y) && (y <= rect.bottom);
+      },
+
+      tapAction: function() {
+        if (this.disabled) {
+          return;
+        }
+
+        this.waitForSpillCompleted(function() {
+          this.pressed = false;
+          this.$.ink.evaporate();
+        });
+      },
+
+      downAction: function(e) {
+        if (this.disabled) {
+          return;
+        }
+
+        this.pressed = true;
+        this.$.ink.spill();
+      },
+
+      upAction: function(e) {
+        if (this.disabled) {
+          return;
+        }
+
+        // wait for tap event to reset ink
+        if (this.insideButton(e.x, e.y)) {
+          return;
+        }
+
+        this.pressed = false;
+
+        this.waitForSpillCompleted('resetInk');
       }
-      
+
     });
     
   </script>

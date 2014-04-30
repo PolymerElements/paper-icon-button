@@ -5,52 +5,50 @@ license that can be found in the LICENSE file.
 */
 :host {
   display: inline-block;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  width: 38px;
-  height: 38px;
+  padding: 8px;
+  position: relative;
   background-image: none;
-  border-radius: 2px;
-  padding: 7px;
-  margin: 2px;
-  vertical-align: middle;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
   cursor: pointer;
 }
-  
-:host(.outline) {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+
+:host([disabled]) {
+  cursor: auto;
 }
 
-:host(:hover) {
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.1);
+#ink {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  width: 100%;
 }
 
-:host(.selected) {
-  background-color: rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.12);
+core-icon {
+  position: relative;
 }
 
-:host(:active, .selected:active) {
-  background-color: rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.12);
-}
-  
-:host(.core-dark-theme.outline) {
-  background-color: rgba(200, 200, 200, 0.05);
-  box-shadow: 0 0 0 1px rgba(200, 200, 200, 0.1);
+core-icon::shadow svg {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
 }
 
-:host(.core-dark-theme:hover) {
-  background-color: rgba(200, 200, 200, 0.05);
-  box-shadow: 0 1px 0 0 rgba(200, 200, 200, 0.12), 0 0 0 1px rgba(200, 200, 200, 0.1);
+:host(:hover) core-icon::shadow svg {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
 }
 
-:host(.core-dark-theme.selected) {
-  background-color: rgba(220, 220, 220, 0.05);
-  box-shadow: inset 0 1px 0 0 rgba(200, 200, 200, 0.05), 0 0 0 1px rgba(200, 200, 200, 0.12);
+:host([disabled]:hover) core-icon::shadow svg {
+  transform: none;
+  -webkit-transform: none;
 }
 
-:host(.core-dark-theme:active, .core-dark-theme.selected:active) {
-  background-color: rgba(200, 200, 200, 0.05);
-  box-shadow: inset 0 1px 0 0 rgba(200, 200, 200, 0.1), 0 0 0 1px rgba(200, 200, 200, 0.12);
+:host([disabled]) core-icon::shadow path {
+  fill: #c9c9c9;
 }
