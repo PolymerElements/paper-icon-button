@@ -28,6 +28,11 @@ license that can be found in the LICENSE file.
   width: 100%;
 }
 
+:host([focused]) #ink::shadow #inkEffect {
+  -webkit-transition: none !important;
+  -webkit-animation: pulse-ink 0.7s infinite alternate;
+}
+
 core-icon {
   position: relative;
 }

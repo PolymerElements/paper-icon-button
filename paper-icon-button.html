@@ -28,17 +28,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  * how to use a custom icon set.
  *
  * @element paper-icon-button
+ * @extends paper-focusable
  * @homepage github.io
  */
 -->
 
 <link href="../core-icon/core-icon.html" rel="import">
+<link href="../paper-focusable/paper-focusable.html" rel="import">
 <link href="../paper-ink/paper-ink.html" rel="import">
 
-<polymer-element name="paper-icon-button" attributes="src icon inkColor pressed disabled" tabindex="-1" on-tap="{{tapAction}}" on-down="{{downAction}}" on-up="{{upAction}}">
+<polymer-element name="paper-icon-button" extends="paper-focusable" attributes="src icon inkColor" on-tap="{{tapAction}}" on-down="{{downAction}}" on-up="{{upAction}}">
 
   <template>
   
+    <link rel="stylesheet" href="pulse-ink.css">
     <link rel="stylesheet" href="paper-icon-button.css">
     
     <paper-ink id="ink" color="{{inkColor}}"></paper-ink>
@@ -58,25 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          * @attribute inkColor
          * @type string
          */
-         inkColor: { value: '#d3d3d3', reflect: true },
-
-         /**
-          * If true, the user is currently holding down the button.
-          *
-          * @attribute pressed
-          * @type boolean
-          * @default false
-          */
-         pressed: { value: false, reflect: true },
-
-         /**
-          * If true, the user cannot interact with this button.
-          *
-          * @attribute disabled
-          * @type boolean
-          * @default false
-          */
-         disabled: { value: false, reflect: true }
+         inkColor: { value: '#d3d3d3', reflect: true }
 
       },
       
@@ -101,12 +86,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       icon: '',
 
+      registerCallback: function(element) {
+        this.inkStyle = element.templateContent().firstElementChild;
+      },
+
+      focusedChanged: function() {
+        if (!this._installedInkStyle) {
+          this.installInkStyle();
+        }
+
+        if (this.focused) {
+          this.$.ink.spill();
+        } else {
+          this.resetInk();
+        }
+      },
+
       disabledChanged: function() {
         if (this.disabled) {
           this.removeAttribute('tabindex');
         } else {
           this.setAttribute('tabindex', -1);
         }
+      },
+
+      installInkStyle: function() {
+        this.installScopeStyle(this.inkStyle, 'paper-icon-button-ink-animation', this.$.ink.shadowRoot);
+        this._installedInkStyle = true;
       },
 
       waitForSpillCompleted: function(callback) {

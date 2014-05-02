@@ -10,8 +10,7 @@ license that can be found in the LICENSE file.
     
     <script src="../platform/platform.js"></script>
     
-    <link rel="import" href="../core-iconset-svg/navigation-icons.html">
-    <link rel="import" href="../core-iconset-svg/social-icons.html">
+    <link rel="import" href="../core-iconset-svg/core-icons.html">
     <link rel="import" href="paper-icon-button.html">
 
     <style>
@@ -39,38 +38,31 @@ license that can be found in the LICENSE file.
   </head>
   
   <body unresolved>
-  
-    <div>
-      <span>png</span>
-      <paper-icon-button icon="drawer"></paper-icon-button>
-      <paper-icon-button icon="menu"></paper-icon-button>
-      <paper-icon-button icon="search"></paper-icon-button>
-      <paper-icon-button icon="dropdown"></paper-icon-button>
-      <paper-icon-button icon="close"></paper-icon-button>
-      <paper-icon-button icon="add"></paper-icon-button>
-      <paper-icon-button icon="trash"></paper-icon-button>
-      <paper-icon-button icon="settings"></paper-icon-button>
-      <paper-icon-button icon="dialog"></paper-icon-button>
-    </div>
     
     <div>
-      <span>svg</span>
+      <span>icon buttons</span>
       <paper-icon-button icon="navigation:menu"></paper-icon-button>
-      <paper-icon-button icon="navigation:arrowBack"></paper-icon-button>
-      <paper-icon-button icon="navigation:arrowForward"></paper-icon-button>
+      <paper-icon-button icon="navigation:arrow-back"></paper-icon-button>
+      <paper-icon-button icon="navigation:arrow-forward"></paper-icon-button>
       <paper-icon-button icon="navigation:check"></paper-icon-button>
       <paper-icon-button icon="navigation:close"></paper-icon-button>
       <paper-icon-button icon="navigation:fullscreen"></paper-icon-button>
-      <paper-icon-button icon="navigation:fullscreenExit"></paper-icon-button>
-      <paper-icon-button icon="navigation:moreVert"></paper-icon-button>
+      <paper-icon-button icon="navigation:fullscreen-exit"></paper-icon-button>
+      <paper-icon-button icon="navigation:more-vert"></paper-icon-button>
       <paper-icon-button icon="navigation:refresh"></paper-icon-button>
     </div>
 
     <div>
-      <span>svg + styled</span>
-      <paper-icon-button icon="social:favorite"></paper-icon-button>
-      <paper-icon-button class="red" inkColor="#fec4c8" icon="social:favorite"></paper-icon-button>
-      <paper-icon-button disabled icon="social:favorite"></paper-icon-button>
+      <span>styled</span>
+      <paper-icon-button icon="action:favorite"></paper-icon-button>
+      <paper-icon-button class="red" inkColor="#fec4c8" icon="action:favorite"></paper-icon-button>
+      <paper-icon-button disabled icon="action:favorite"></paper-icon-button>
+    </div>
+
+    <div>
+      <span>focused</span>
+      <paper-icon-button focused icon="social:cake"></paper-icon-button>
+      <paper-icon-button focused icon="social:plus-one"></paper-icon-button>
     </div>
     
   </body>
