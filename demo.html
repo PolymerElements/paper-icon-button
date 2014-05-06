@@ -20,7 +20,7 @@ license that can be found in the LICENSE file.
         padding: 5em;
       }
 
-      div {
+      section {
         margin: 1em;
       }
 
@@ -31,6 +31,9 @@ license that can be found in the LICENSE file.
         margin-right: 1em;
       }
 
+      paper-icon-button.red core-icon path {
+        fill: #fe774d;
+      }
       paper-icon-button.red /deep/ core-icon::shadow path {
         fill: #fe774d;
       }
@@ -40,7 +43,7 @@ license that can be found in the LICENSE file.
   
   <body unresolved>
     
-    <div>
+    <section>
       <span>icon buttons</span>
       <paper-icon-button icon="menu"></paper-icon-button>
       <paper-icon-button icon="arrow-back"></paper-icon-button>
@@ -51,20 +54,20 @@ license that can be found in the LICENSE file.
       <paper-icon-button icon="fullscreen-exit"></paper-icon-button>
       <paper-icon-button icon="more-vert"></paper-icon-button>
       <paper-icon-button icon="refresh"></paper-icon-button>
-    </div>
+    </section>
 
-    <div>
+    <section>
       <span>styled</span>
       <paper-icon-button icon="favorite"></paper-icon-button>
       <paper-icon-button class="red" inkColor="#fec4c8" icon="favorite"></paper-icon-button>
       <paper-icon-button disabled icon="favorite"></paper-icon-button>
-    </div>
+    </section>
 
-    <div>
+    <section>
       <span>focused</span>
       <paper-icon-button focused icon="social:cake"></paper-icon-button>
       <paper-icon-button focused icon="social:plus-one"></paper-icon-button>
-    </div>
-    
+    </section>
+
   </body>
 </html>
