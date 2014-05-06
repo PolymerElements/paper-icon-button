@@ -11,7 +11,10 @@ license that can be found in the LICENSE file.
     <script src="../platform/platform.js"></script>
     
     <link rel="import" href="../core-icons/core-icons.html">
+    <link rel="import" href="../core-icons/iconsets/maps-icons.html">
     <link rel="import" href="../core-icons/iconsets/social-icons.html">
+    <link rel="import" href="../polymer-selector/polymer-selector.html">
+    <link rel="import" href="../paper-shadow/paper-shadow.html">
     <link rel="import" href="paper-icon-button.html">
 
     <style>
@@ -31,17 +34,30 @@ license that can be found in the LICENSE file.
         margin-right: 1em;
       }
 
+      paper-icon-button {
+        vertical-align: middle;
+      }
+
       paper-icon-button.red core-icon path {
         fill: #fe774d;
       }
       paper-icon-button.red /deep/ core-icon::shadow path {
         fill: #fe774d;
       }
+
+      polymer-selector paper-icon-button:not([active]) core-icon path {
+        fill: #c9c9c9;
+      }
+      polymer-selector paper-icon-button:not([active]) /deep/ core-icon::shadow path {
+        fill: #c9c9c9;
+      }
     </style>
     
   </head>
   
   <body unresolved>
+
+    <paper-shadow></paper-shadow>
     
     <section>
       <span>icon buttons</span>
@@ -67,6 +83,16 @@ license that can be found in the LICENSE file.
       <span>focused</span>
       <paper-icon-button focused icon="social:cake"></paper-icon-button>
       <paper-icon-button focused icon="social:plus-one"></paper-icon-button>
+    </section>
+
+    <section>
+      <span>segmented</span>
+      <polymer-selector selected="1">
+        <paper-icon-button fillInk isToggle icon="maps:directionswalk"></paper-icon-button>
+        <paper-icon-button fillInk isToggle icon="maps:directions-bike"></paper-icon-button>
+        <paper-icon-button fillInk isToggle icon="maps:directions-transit"></paper-icon-button>
+        <paper-icon-button fillInk isToggle icon="maps:directions-car"></paper-icon-button>
+      </polymer-selector>
     </section>
 
   </body>

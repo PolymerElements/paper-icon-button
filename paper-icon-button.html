@@ -37,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link href="../paper-focusable/paper-focusable.html" rel="import">
 <link href="../paper-ink/paper-ink.html" rel="import">
 
-<polymer-element name="paper-icon-button" extends="paper-focusable" attributes="src icon inkColor" on-tap="{{tapAction}}" on-down="{{downAction}}" on-up="{{upAction}}">
+<polymer-element name="paper-icon-button" extends="paper-focusable" attributes="src icon inkColor fillInk" on-tap="{{tapAction}}" on-down="{{downAction}}" on-up="{{upAction}}">
 
   <template>
   
@@ -61,7 +61,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          * @attribute inkColor
          * @type string
          */
-         inkColor: { value: '#d3d3d3', reflect: true }
+         inkColor: { value: '#d3d3d3', reflect: true },
+
+         /**
+          * If true, the ink expands to completely fill the bounds of the
+          * button. Otherwise, the ink expands to a circle with a diameter
+          * equal to the width of the button.
+          */
+         fillInk: { value: false, reflect: false }
 
       },
       
@@ -91,6 +98,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       focusedChanged: function() {
+        this.super();
+
         if (!this._installedInkStyle) {
           this.installInkStyle();
         }
@@ -102,11 +111,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
 
-      disabledChanged: function() {
-        if (this.disabled) {
-          this.removeAttribute('tabindex');
+      activeChanged: function() {
+        this.super();
+
+        if (!this._measuredInk) {
+          this.fillInkChanged();
+        }
+
+        if (this.active) {
+          this.$.ink.spill();
         } else {
-          this.setAttribute('tabindex', -1);
+          this.$.ink.evaporate();
+        }
+      },
+
+      fillInkChanged: function() {
+        this._measuredInk = true;
+
+        if (this.fillInk) {
+          var rect = this.getBoundingClientRect();
+          var inkDiameter = Math.sqrt(2 * rect.width * rect.width);
+          var offset = (rect.width - inkDiameter) / 2
+          this.$.ink.style.height = inkDiameter + 'px';
+          this.$.ink.style.width = inkDiameter + 'px';
+          this.$.ink.style.left = offset + 'px';
+          this.$.ink.style.top = offset + 'px';
+        } else {
+          this.$.ink.style.height = null;
+          this.$.ink.style.width = null;
+          this.$.ink.style.left = null;
+          this.$.ink.style.top = null;
         }
       },
 
@@ -120,7 +154,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       resetInk: function() {
-        this.pressed = false;
         this.$.ink.reset();
       },
 
@@ -134,34 +167,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return;
         }
 
-        this.waitForSpillCompleted(function() {
-          this.pressed = false;
-          this.$.ink.evaporate();
-        });
-      },
-
-      downAction: function(e) {
-        if (this.disabled) {
-          return;
+        if (!this.isToggle) {
+          this.waitForSpillCompleted(function() {
+            this.active = false;
+          });
         }
-
-        this.pressed = true;
-        this.$.ink.spill();
-      },
-
-      upAction: function(e) {
-        if (this.disabled) {
-          return;
-        }
-
-        // wait for tap event to reset ink
-        if (this.insideButton(e.x, e.y)) {
-          return;
-        }
-
-        this.pressed = false;
-
-        this.waitForSpillCompleted('resetInk');
       }
 
     });

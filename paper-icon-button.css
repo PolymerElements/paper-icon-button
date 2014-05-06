@@ -12,6 +12,7 @@ license that can be found in the LICENSE file.
   user-select: none;
   -webkit-user-select: none;
   cursor: pointer;
+  overflow: hidden;
 }
 
 :host([disabled]) {
