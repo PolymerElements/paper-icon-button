@@ -34,144 +34,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link href="../core-icon/core-icon.html" rel="import">
-<link href="../paper-focusable/paper-focusable.html" rel="import">
+<link href="../paper-button/paper-button.html" rel="import">
 <link href="../paper-ink/paper-ink.html" rel="import">
 
-<polymer-element name="paper-icon-button" extends="paper-focusable" attributes="src icon inkColor fillInk" on-tap="{{tapAction}}" on-down="{{downAction}}" on-up="{{upAction}}">
+<polymer-element name="paper-icon-button" extends="paper-button">
 
   <template>
-  
-    <link rel="stylesheet" href="pulse-ink.css">
-    <link rel="stylesheet" href="paper-icon-button.css">
-    
-    <paper-ink id="ink" color="{{inkColor}}"></paper-ink>
-    <core-icon src="{{src}}" icon="{{icon}}"><content></content></core-icon>
+
+    <link href="paper-icon-button.css" rel="stylesheet">
+
+    <shadow></shadow>
     
   </template>
-  
+
   <script>
   
     Polymer('paper-icon-button', {
 
-      publish: {
-
-        /**
-         * The color of the ink that spreads when the button is tapped.
-         *
-         * @attribute inkColor
-         * @type string
-         */
-         inkColor: { value: '#d3d3d3', reflect: true },
-
-         /**
-          * If true, the ink expands to completely fill the bounds of the
-          * button. Otherwise, the ink expands to a circle with a diameter
-          * equal to the width of the button.
-          */
-         fillInk: { value: false, reflect: false }
-
-      },
-      
-      /**
-       * The URL of an image for the icon.  Should not use `icon` property
-       * if you are using this property.
-       *
-       * @attribute src
-       * @type string
-       * @default ''
-       */
-      src: '',
-      
-      /**
-       * Specifies the icon name or index in the set of icons available in
-       * the icon set.  Should not use `src` property if you are using this
-       * property.
-       *
-       * @attribute icon
-       * @type string
-       * @default ''
-       */
-      icon: '',
-
-      registerCallback: function(element) {
-        this.inkStyle = element.templateContent().firstElementChild;
-      },
-
-      focusedChanged: function() {
-        this.super();
-
-        if (!this._installedInkStyle) {
-          this.installInkStyle();
-        }
-
-        if (this.focused) {
-          this.$.ink.spill();
-        } else {
-          this.resetInk();
-        }
-      },
-
-      activeChanged: function() {
-        this.super();
-
-        if (!this._measuredInk) {
-          this.fillInkChanged();
-        }
-
-        if (this.active) {
-          this.$.ink.spill();
-        } else {
-          this.$.ink.evaporate();
-        }
-      },
-
-      fillInkChanged: function() {
-        this._measuredInk = true;
-
-        if (this.fillInk) {
-          var rect = this.getBoundingClientRect();
-          var inkDiameter = Math.sqrt(2 * rect.width * rect.width);
-          var offset = (rect.width - inkDiameter) / 2
-          this.$.ink.style.height = inkDiameter + 'px';
-          this.$.ink.style.width = inkDiameter + 'px';
-          this.$.ink.style.left = offset + 'px';
-          this.$.ink.style.top = offset + 'px';
-        } else {
-          this.$.ink.style.height = null;
-          this.$.ink.style.width = null;
-          this.$.ink.style.left = null;
-          this.$.ink.style.top = null;
-        }
-      },
-
-      installInkStyle: function() {
-        this.installScopeStyle(this.inkStyle, 'paper-icon-button-ink-animation', this.$.ink.shadowRoot);
-        this._installedInkStyle = true;
-      },
-
-      waitForSpillCompleted: function(callback) {
-        this.async(callback, null, (this.$.ink.spillCompleted ? 0 : this.duration));
-      },
-
-      resetInk: function() {
-        this.$.ink.reset();
-      },
-
-      insideButton: function(x, y) {
-        var rect = this.getBoundingClientRect();
-        return (rect.left <= x) && (x <= rect.right) && (rect.top <= y) && (y <= rect.bottom);
-      },
-
-      tapAction: function() {
-        if (this.disabled) {
-          return;
-        }
-
-        if (!this.isToggle) {
-          this.waitForSpillCompleted(function() {
-            this.active = false;
-          });
-        }
+      ready: function() {
+        this.$.ripple.classList.add('recenteringTouch');
+        this.$.ripple.classList.add('circle');
       }
 
     });
