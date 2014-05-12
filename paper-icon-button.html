@@ -37,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link href="../paper-button/paper-button.html" rel="import">
 <link href="../paper-ink/paper-ink.html" rel="import">
 
-<polymer-element name="paper-icon-button" extends="paper-button">
+<polymer-element name="paper-icon-button" extends="paper-button" attributes="fill">
 
   <template>
 
@@ -51,9 +51,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   
     Polymer('paper-icon-button', {
 
+      publish: {
+
+        /**
+         * If true, the ripple expands to a square fill the containing box.
+         *
+         * @attribute fill
+         * @type boolean
+         * @default false
+         */
+        fill: {value: false, reflect: true}
+
+      },
+
       ready: function() {
         this.$.ripple.classList.add('recenteringTouch');
-        this.$.ripple.classList.add('circle');
+        this.fillChanged();
+      },
+
+      fillChanged: function() {
+        this.$.ripple.classList.toggle('circle', !this.fill);
       }
 
     });
