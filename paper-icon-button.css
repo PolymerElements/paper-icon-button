@@ -12,6 +12,6 @@ license that can be found in the LICENSE file.
   fill: #c9c9c9;
 }
 
-:host /deep/ #focusBg {
+:host(:not([fill])) /deep/ #focusBg {
   border-radius: 50%;
 }
