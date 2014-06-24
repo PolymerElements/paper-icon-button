@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "polymer": "Polymer/polymer#master",
+    "core-selector": "Polymer/core-selector#master",
     "paper-button": "Polymer/paper-button#master"
   }
 }
