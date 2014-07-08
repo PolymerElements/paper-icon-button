@@ -74,8 +74,10 @@ See `core-iconset` for more information about how to use a custom icon set.
         this.$.ripple.classList.toggle('circle', !this.fill);
       },
 
-      iconChanged: function() {
-        this.setAttribute('aria-label', this.icon);
+      iconChanged: function(oldIcon) {
+        if (!this.label) {
+          this.setAttribute('aria-label', this.icon);
+        }
       }
 
     });
