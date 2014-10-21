@@ -22,7 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body>
 
-  <div style="font-size:1.3em;">
+  <div style="font-size:40px;">
     Toolbar
     <paper-icon-button id="button1" icon="add"></paper-icon-button>
   </div>
@@ -36,8 +36,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return {left: rect.left + rect.width / 2, top: rect.top + rect.height / 2};
     }
 
+    function approxEqual(p1, p2) {
+      return Math.round(p1.left) == Math.round(p2.left) && Math.round(p1.top) == Math.round(p2.top);
+    }
+
     test('renders correctly independent of font size', function() {
-      assert.deepEqual(centerOf(b1.$.icon), centerOf(b1));
+      assert.ok(approxEqual(centerOf(b1.$.icon), centerOf(b1)));
     });
 
   </script>

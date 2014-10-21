@@ -40,10 +40,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     test('aria-disabled is set', function(done) {
       assert.ok(f2.hasAttribute('aria-disabled'));
-      f2.removeAttribute('disabled');
       flush(function() {
-        assert.ok(!f2.hasAttribute('aria-disabled'));
-        done();
+        f2.removeAttribute('disabled');
+        flush(function() {
+          assert.ok(!f2.hasAttribute('aria-disabled'));
+          done();
+        });
       });
     });
 
