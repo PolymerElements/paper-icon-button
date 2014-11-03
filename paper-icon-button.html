@@ -15,8 +15,13 @@ Material Design: <a href="http://www.google.com/design/spec/components/buttons.h
 `paper-icon-button` is a button with an image placed at the center. When the user touches
 the button, a ripple effect emanates from the center of the button.
 
-You may import `core-icons` to use with this element, or provide an URL to a custom icon.
-See `core-iconset` for more information about how to use a custom icon set.
+`paper-icon-button` includes a default icon set.  Use `icon` to specify which icon
+from the icon set to use.
+
+    <paper-icon-button icon="menu"></paper-icon-button>
+
+See [`core-iconset`](#core-iconset) for more information about
+how to use a custom icon set.
 
 Example:
 
@@ -60,6 +65,7 @@ you should ensure that the `aria-label` attribute is set.
 
 <link href="../polymer/polymer.html" rel="import">
 <link href="../core-icon/core-icon.html" rel="import">
+<link href="../core-icons/core-icons.html" rel="import">
 <link href="../paper-button/paper-button-base.html" rel="import">
 <link href="../paper-ripple/paper-ripple.html" rel="import">
 
