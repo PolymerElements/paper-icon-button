@@ -64,11 +64,7 @@ The opacity of the ripple is not customizable via CSS.
 <link rel="import" href="../layout/layout.html">
 
 <dom-module id="paper-icon-button">
-  <!--<link rel="import" type="css" href="../paper-button/paper-button.css">-->
   <style>
-    /* TODO(cdata): Currently we are targeting :host([role]) just so that
-       we can bump the specificity slightly. This should be updated when
-       polymer/polymer#1349 is resolved */
     :host {
       display: inline-block;
       position: relative;
@@ -96,7 +92,7 @@ The opacity of the ripple is not customizable via CSS.
       elevation="{{elevation}}" toggle="{{toggle}}" raised="true"
       active="[[active]]" focused="[[focused]]" disabled="[[disabled]]"></template>
 
-    <paper-ripple></paper-ripple>
+    <paper-ripple class="circle" recenters></paper-ripple>
     <core-icon id="icon" src="[[src]]" icon="[[icon]]"></core-icon>
   </template>
 </dom-module>
@@ -130,18 +126,6 @@ The opacity of the ripple is not customizable via CSS.
       icon: {
         type: String,
         value: ''
-      },
-
-      /**
-       * Set this to true to style this is a "mini" FAB.
-       *
-       * @attribute mini
-       * @type boolean
-       * @default false
-       */
-      mini: {
-        type: Boolean,
-        value: false
       },
 
       /**
