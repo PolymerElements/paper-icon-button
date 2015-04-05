@@ -8,12 +8,13 @@ license that can be found in the LICENSE file.
   <head>
     <title>paper-icon-button</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="../webcomponentsjs/webcomponents.js"></script>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../core-icons/core-icons.html">
-    <link rel="import" href="paper-icon-button.html">
+    <link rel="import" href="../../core-icons/core-icons.html">
+    <link rel="import" href="../../font-roboto/roboto.html">
+    <link rel="import" href="../paper-icon-button.html">
 
-    <style shim-shadowdom>
+    <style>
       body {
         font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
         font-size: 14px;
@@ -49,15 +50,20 @@ license that can be found in the LICENSE file.
         color: #4285f4;
       }
 
+      paper-icon-button.blueRipple #ripple {
+        color: #4285f4;
+      }
+
       paper-icon-button.huge::shadow #icon {
         width: 100px;
         height: 100px;
       }
 
-/*      core-selector paper-icon-button:not([active])::shadow core-icon {
-        color: #c9c9c9;
+      paper-icon-button.huge #icon {
+        width: 100px;
+        height: 100px;
       }
-*/
+
       paper-icon-button.custom {
         color: #a9edff;
       }
@@ -65,7 +71,7 @@ license that can be found in the LICENSE file.
 
   </head>
 
-  <body unresolved onclick="clickAction(event);">
+  <body onclick="clickAction(event);">
 
     <column>
 
@@ -100,28 +106,10 @@ license that can be found in the LICENSE file.
 
         <div>Link</div>
 
-        <a href="https://www.polymer-project.org" target="_blank">
-          <paper-icon-button icon="polymer" title="polymer"></paper-icon-button>
-        </a>
+        <paper-icon-button icon="polymer" title="polymer"></paper-icon-button>
 
       </section>
 
-<!--       <section>
-        <span>focused</span>
-        <paper-icon-button focused icon="social:cake"></paper-icon-button>
-        <paper-icon-button focused icon="social:plus-one"></paper-icon-button>
-      </section>
- -->
-<!--       <section>
-        <span>segmented</span>
-        <core-selector selected="1">
-          <paper-icon-button fill isToggle icon="maps:directionswalk"></paper-icon-button>
-          <paper-icon-button fill isToggle icon="maps:directions-bike"></paper-icon-button>
-          <paper-icon-button fill isToggle icon="maps:directions-transit"></paper-icon-button>
-          <paper-icon-button fill isToggle icon="maps:directions-car"></paper-icon-button>
-        </core-selector>
-      </section>
- -->
       <section>
 
         <div>Custom icon src</div>
