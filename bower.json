@@ -1,7 +1,7 @@
 {
   "name": "paper-icon-button",
   "private": true,
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A material design icon button",
   "main": "paper-icon-button.html",
   "author": [
