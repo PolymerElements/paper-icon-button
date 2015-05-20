@@ -50,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     function approxEqual(p1, p2) {
-      return Math.round(p1.left) == Math.round(p2.left) && Math.round(p1.top) == Math.round(p2.top);
+      return Math.abs(p1.left - p2.left) <= 1 && Math.abs(p1.top-p2.top) <= 1;
     }
 
     setup(function() {
@@ -59,16 +59,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('applies an icon specified by the `icon` attribute', function() {
-      assert.strictEqual(!!b1.$.icon.usesSrcAttribute, false);
+      assert.strictEqual(!!b1.$.icon.src, false);
       assert.ok(Polymer.dom(b1.$.icon.root).querySelector('svg'));
     });
 
     test('applies an icon specified by the `src` attribute', function() {
-      assert.strictEqual(!!b2.$.icon.usesSrcAttribute, true);
-      assert.ok(b2.$.icon.srcImgElement);
+
+      assert.strictEqual(!!b2.$.icon.src, true);
+      assert.ok(b2.$.icon.src);
     });
 
-    xtest('renders correctly independent of line height', function() {
+    test('renders correctly independent of line height', function() {
       assert.ok(approxEqual(centerOf(b1.$.icon), centerOf(b1)));
     });
   </script>
