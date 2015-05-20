@@ -8,6 +8,19 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
 -->
 
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../paper-behaviors/paper-button-behavior.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
+
+<style is="custom-style">
+  :root {
+    --paper-icon-button-disabled-text: var(--disabled-text-color);
+  }
+</style>
+
 <!--
 @group Paper Elements
 
@@ -54,19 +67,6 @@ The opacity of the ripple is not customizable via CSS.
 @homepage github.io
 -->
 
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="../paper-behaviors/paper-button-behavior.html">
-<link rel="import" href="../paper-ripple/paper-ripple.html">
-
-<style is="custom-style">
-  * {
-    --paper-icon-button-disabled-text: var(--disabled-text-color);
-  }
-</style>
-
 <dom-module id="paper-icon-button">
   <style>
     :host {
@@ -93,7 +93,7 @@ The opacity of the ripple is not customizable via CSS.
     }
   </style>
   <template>
-    <paper-ripple class="circle" recenters></paper-ripple>
+    <paper-ripple class="circle" initial-opacity="0.1" center></paper-ripple>
     <iron-icon id="icon" src="[[src]]" icon="[[icon]]"></iron-icon>
   </template>
 </dom-module>

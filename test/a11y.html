@@ -52,12 +52,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('aria-disabled is set', function() {
-      assert.ok(b2.hasAttribute('aria-disabled'));
+      assert.strictEqual(b2.getAttribute('aria-disabled'), 'true');
       b2.removeAttribute('disabled');
-      assert.ok(!b2.hasAttribute('aria-disabled'));
+      assert.strictEqual(b2.getAttribute('aria-disabled'), 'false');
     });
-
-    test('aria-label is set');
 
     test('user-defined aria-label is preserved', function() {
       assert.strictEqual(b3.getAttribute('aria-label'), 'custom');
