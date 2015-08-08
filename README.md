@@ -16,13 +16,15 @@ from the icon set to use.
 See [`iron-iconset`](#iron-iconset) for more information about
 how to use a custom icon set.
 
+Use `tooltip` to add a [`paper-tooltip`](#paper-tooltip) element with the desired text.
+
 Example:
 
 ```html
 <link href="path/to/iron-icons/iron-icons.html" rel="import">
 
 <paper-icon-button icon="favorite"></paper-icon-button>
-<paper-icon-button src="star.png"></paper-icon-button>
+<paper-icon-button src="star.png" tooltip="Rate"></paper-icon-button>
 ```
 
 Styling
