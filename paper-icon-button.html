@@ -63,8 +63,7 @@ Custom property | Description | Default
 -->
 
 <dom-module id="paper-icon-button">
-  <template>
-    <style>
+  <template><style>
       :host {
         display: inline-block;
         position: relative;
@@ -98,11 +97,7 @@ Custom property | Description | Default
         --iron-icon-width: 100%;
         --iron-icon-height: 100%;
       }
-    </style>
-
-    <paper-ripple id="ink" class="circle" center></paper-ripple>
-    <iron-icon id="icon" src="[[src]]" icon="[[icon]]" alt$="[[alt]]"></iron-icon>
-  </template>
+    </style><iron-icon id="icon" src="[[src]]" icon="[[icon]]" alt$="[[alt]]"></iron-icon></template>
 
   <script>
     Polymer({
