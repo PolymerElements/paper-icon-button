@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-behaviors/paper-button-behavior.html">
 <link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
 <link rel="import" href="../paper-ripple/paper-ripple.html">
+<link rel="import" href="../paper-tooltip/paper-tooltip.html">
 
 <!--
 Material design: [Icon toggles](https://www.google.com/design/spec/components/buttons.html#buttons-toggle-buttons)
@@ -30,12 +31,14 @@ from the icon set to use.
 See [`iron-iconset`](#iron-iconset) for more information about
 how to use a custom icon set.
 
+Use `tooltip` to add a [`paper-tooltip`](#paper-tooltip) element with the desired text.
+
 Example:
 
     <link href="path/to/iron-icons/iron-icons.html" rel="import">
 
     <paper-icon-button icon="favorite"></paper-icon-button>
-    <paper-icon-button src="star.png"></paper-icon-button>
+    <paper-icon-button src="star.png" tooltip="Rate"></paper-icon-button>
 
 ### Styling
 
@@ -99,9 +102,13 @@ Custom property | Description | Default
         --iron-icon-height: 100%;
       }
     </style>
-
-    <paper-ripple id="ink" class="circle" center></paper-ripple>
-    <iron-icon id="icon" src="[[src]]" icon="[[icon]]" alt$="[[alt]]"></iron-icon>
+    <template is="dom-if" if="{{tooltip}}">
+      <paper-tooltip margin-top="0">{{tooltip}}</paper-tooltip>
+    </template>
+    <div>
+      <paper-ripple id="ink" class="circle" center></paper-ripple>
+      <iron-icon id="icon" src="[[src]]" icon="[[icon]]" alt$="[[alt]]"></iron-icon>
+    </div>
   </template>
 
   <script>
@@ -141,6 +148,13 @@ Custom property | Description | Default
         alt: {
           type: String,
           observer: "_altChanged"
+        },
+
+        /**
+         * The text being used in a paper-tooltip. The tooltip won't be shown if this property is undefined or the whole element is disabled.
+         */
+        tooltip: {
+          type: String
         }
       },
 
