@@ -98,6 +98,10 @@ Custom property | Description | Default
         cursor: auto;
         @apply(--paper-icon-button-disabled);
       }
+      
+      :host(:hover) { 
+        @apply(--paper-icon-button-hover);
+      }
 
       iron-icon {
         --iron-icon-width: 100%;
