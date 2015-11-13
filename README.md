@@ -56,5 +56,6 @@ Custom property | Description | Default
 `--paper-icon-button-ink-color` | Selected/focus ripple color | `--primary-text-color`
 `--paper-icon-button` | Mixin for a button | `{}`
 `--paper-icon-button-disabled` | Mixin for a disabled button | `{}`
+`--paper-icon-button-hover` | Mixin for button on hover | `{}`
 
 
