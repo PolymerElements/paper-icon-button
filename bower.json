@@ -33,5 +33,6 @@
     "web-component-tester": "*",
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
-  }
+  },
+  "ignore": []
 }
