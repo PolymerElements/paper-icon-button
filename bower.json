@@ -21,10 +21,8 @@
   },
   "dependencies": {
     "polymer": "Polymer/polymer#^1.1.0",
-    "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
     "iron-icon": "PolymerElements/iron-icon#^1.0.0",
     "paper-behaviors": "PolymerElements/paper-behaviors#^1.0.0",
-    "paper-ripple": "PolymerElements/paper-ripple#^1.0.0",
     "paper-styles": "PolymerElements/paper-styles#^1.0.0"
   },
   "devDependencies": {
