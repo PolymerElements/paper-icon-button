@@ -37,6 +37,14 @@ Example:
     <paper-icon-button icon="favorite"></paper-icon-button>
     <paper-icon-button src="star.png"></paper-icon-button>
 
+To use `paper-icon-button` as a link, wrap it in an anchor tag. Since `paper-icon-button`
+will already receive focus, you may want to prevent the anchor tag from receiving focus
+as well by setting its tabindex to -1.
+
+    <a href="https://www.polymer-project.org" tabindex="-1">
+      <paper-icon-button icon="polymer"></paper-icon-button>
+    </a>
+
 ### Styling
 
 Style the button with CSS as you would a normal DOM element. If you are using the icons
@@ -79,7 +87,7 @@ Custom property | Description | Default
         cursor: pointer;
         z-index: 0;
         line-height: 1;
-        
+
         width: 40px;
         height: 40px;
 
@@ -99,8 +107,8 @@ Custom property | Description | Default
         cursor: auto;
         @apply(--paper-icon-button-disabled);
       }
-      
-      :host(:hover) { 
+
+      :host(:hover) {
         @apply(--paper-icon-button-hover);
       }
 
