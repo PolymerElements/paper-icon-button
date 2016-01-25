@@ -43,6 +43,16 @@ Example:
 <paper-icon-button src="star.png"></paper-icon-button>
 ```
 
+To use `paper-icon-button` as a link, wrap it in an anchor tag. Since `paper-icon-button`
+will already receive focus, you may want to prevent the anchor tag from receiving focus
+as well by setting its tabindex to -1.
+
+```html
+<a href="https://www.polymer-project.org" tabindex="-1">
+  <paper-icon-button icon="polymer"></paper-icon-button>
+</a>
+```
+
 ### Styling
 
 Style the button with CSS as you would a normal DOM element. If you are using the icons
