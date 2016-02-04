@@ -12,9 +12,9 @@ thing! https://github.com/PolymerLabs/tedium/issues
 
 -->
 
-[![Build Status](https://travis-ci.org/PolymerElements/paper-icon-button.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-icon-button)
+[![Build status](https://travis-ci.org/PolymerElements/paper-icon-button.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-icon-button)
 
-_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-icon-button)_
+_[Demo and API docs](https://elements.polymer-project.org/elements/paper-icon-button)_
 
 
 ##&lt;paper-icon-button&gt;
