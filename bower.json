@@ -4,7 +4,10 @@
   "version": "1.0.7",
   "license": "http://polymer.github.io/LICENSE.txt",
   "description": "A material design icon button",
-  "main": "paper-icon-button.html",
+  "main": [
+    "paper-icon-button.html",
+    "paper-icon-button-light.html"
+  ],
   "author": [
     "The Polymer Authors"
   ],
