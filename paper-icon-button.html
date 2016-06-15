@@ -76,7 +76,11 @@ Custom property | Description | Default
         position: relative;
         padding: 8px;
         outline: none;
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+        /* NOTE: Both values are needed, since some phones require the value to be `transparent`. */
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
