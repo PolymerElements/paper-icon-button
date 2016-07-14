@@ -63,8 +63,6 @@ provided by `iron-icons`, they will inherit the foreground color of the button.
 <paper-icon-button icon="favorite" style="color: red;"></paper-icon-button>
 ```
 
-See `Polymer.IronIcon` for a list of custom properties used to style the internal `iron-icon`.
-
 By default, the ripple is the same color as the foreground at 25% opacity. You may
 customize the color using the `--paper-icon-button-ink-color` custom property.
 
@@ -77,6 +75,7 @@ The following custom properties and mixins are available for styling:
 | `--paper-icon-button` | Mixin for a button | `{}` |
 | `--paper-icon-button-disabled` | Mixin for a disabled button | `{}` |
 | `--paper-icon-button-hover` | Mixin for button on hover | `{}` |
+
 
 
 <!-- No docs for <paper-icon-button-light> found. -->
