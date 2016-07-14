@@ -76,6 +76,6 @@ The following custom properties and mixins are available for styling:
 | `--paper-icon-button-disabled` | Mixin for a disabled button | `{}` |
 | `--paper-icon-button-hover` | Mixin for button on hover | `{}` |
 
-To style the internal icon, please see the `Polymer.IronIcon` documentation.
+See `Polymer.IronIcon` for a list of custom properties used to style the internal `iron-icon`.
 
 <!-- No docs for <paper-icon-button-light> found. -->
