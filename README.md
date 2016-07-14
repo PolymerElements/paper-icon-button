@@ -72,12 +72,10 @@ The following custom properties and mixins are available for styling:
 | --- | --- | --- |
 | `--paper-icon-button-disabled-text` | The color of the disabled button | `--disabled-text-color` |
 | `--paper-icon-button-ink-color` | Selected/focus ripple color | `--primary-text-color` |
-| `--iron-icon-width` | Width of iron-icon | `100%` |
-| `--iron-icon-height` | Height of iron-icon | `100%` |
 | `--paper-icon-button` | Mixin for a button | `{}` |
 | `--paper-icon-button-disabled` | Mixin for a disabled button | `{}` |
 | `--paper-icon-button-hover` | Mixin for button on hover | `{}` |
 
-
+To style the internal icon, please see the `Polymer.IronIcon` documentation.
 
 <!-- No docs for <paper-icon-button-light> found. -->
