@@ -109,6 +109,10 @@ Custom property | Description | Default
 
         @apply --paper-icon-button-disabled;
       }
+        
+      :host([hidden]) {
+        display: none !important;
+      }
 
       :host(:hover) {
         @apply --paper-icon-button-hover;
