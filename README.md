@@ -93,4 +93,6 @@ The following custom properties and mixins are available for styling:
 
 
 
-<!-- No docs for <paper-icon-button-light> found. -->
+### Changes in 2.0
+
+ * `<paper-icon-button-light>` was built as an extension of `<button>`, but type-extension elements [are discouraged in Polymer 2](https://www.polymer-project.org/2.0/docs/about_20#type-extension), so this element has been removed.
