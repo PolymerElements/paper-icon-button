@@ -5,8 +5,7 @@
   "license": "http://polymer.github.io/LICENSE.txt",
   "description": "A material design icon button",
   "main": [
-    "paper-icon-button.html",
-    "paper-icon-button-light.html"
+    "paper-icon-button.html"
   ],
   "author": [
     "The Polymer Authors"
