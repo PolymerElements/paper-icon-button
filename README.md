@@ -90,6 +90,7 @@ The following custom properties and mixins are available for styling:
 | `--paper-icon-button` | Mixin for a button | `{}` |
 | `--paper-icon-button-disabled` | Mixin for a disabled button | `{}` |
 | `--paper-icon-button-hover` | Mixin for button on hover | `{}` |
+| `--paper-icon-button-iron-icon` | Mixin for iron-icon | `{}` |
 
 
 

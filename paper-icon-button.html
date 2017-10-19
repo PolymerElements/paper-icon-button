@@ -63,6 +63,7 @@ Custom property | Description | Default
 `--paper-icon-button` | Mixin for a button | `{}`
 `--paper-icon-button-disabled` | Mixin for a disabled button | `{}`
 `--paper-icon-button-hover` | Mixin for button on hover | `{}`
+`--paper-icon-button-iron-icon` | Mixin for iron-icon | `{}`
 
 @group Paper Elements
 @element paper-icon-button
@@ -122,6 +123,7 @@ Custom property | Description | Default
       iron-icon {
         --iron-icon-width: 100%;
         --iron-icon-height: 100%;
+        @apply --paper-icon-button-iron-icon
       }
     </style>
 
