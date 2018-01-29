@@ -96,11 +96,13 @@ Custom property | Description | Default
 
       attached: function() {
         // Assume the button has already been distributed.
-        this._button = this.getEffectiveChildren()[0];
-        this._rippleContainer = this._button;
+        var button = this.getEffectiveChildren()[0];
+        this._rippleContainer = button;
 
-        this._button.addEventListener('focus', this._rippleDown.bind(this));
-        this._button.addEventListener('blur', this._rippleUp.bind(this));
+        // We need to set the focus/blur listeners on the distributed button,
+        // not the host, since the host isn't focusable.
+        button.addEventListener('focus', this._rippleDown.bind(this));
+        button.addEventListener('blur', this._rippleUp.bind(this));
       },
       _rippleDown: function() {
         this.getRipple().uiDownAction();
