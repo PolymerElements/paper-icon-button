@@ -90,9 +90,3 @@ The following custom properties and mixins are available for styling:
 | `--paper-icon-button` | Mixin for a button | `{}` |
 | `--paper-icon-button-disabled` | Mixin for a disabled button | `{}` |
 | `--paper-icon-button-hover` | Mixin for button on hover | `{}` |
-
-
-
-### Changes in 2.0
-
- * `<paper-icon-button-light>` was built as an extension of `<button>`, but type-extension elements [are discouraged in Polymer 2](https://www.polymer-project.org/2.0/docs/about_20#type-extension), so this element has been removed.
