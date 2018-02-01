@@ -59,7 +59,7 @@ Custom property | Description | Default
         @apply(--paper-icon-button-light-ripple);
       }
 
-      :host ::slotted(button) {
+      :host > ::slotted(button) {
         position: relative;
         width: 100%;
         height: 100%;
@@ -75,13 +75,13 @@ Custom property | Description | Default
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -webkit-tap-highlight-color: transparent;
       }
-      :host ::slotted(button[disabled]) {
+      :host > ::slotted(button[disabled]) {
         color: #9b9b9b;
         pointer-events: none;
         cursor: auto;
       }
     </style>
-    <slot></slot>
+    <slot id="content"></slot>
   </template>
 
   <script>
@@ -92,20 +92,21 @@ Custom property | Description | Default
         Polymer.PaperRippleBehavior
       ],
 
-      listeners: {
-        'down': '_rippleDown',
-        'up': '_rippleUp'
-      },
-
       ready: function() {
-        // Assume the button has already been distributed.
-        var button = this.getEffectiveChildren()[0];
-        this._rippleContainer = button;
+        Polymer.RenderStatus.afterNextRender(this, () => {
+          // Add lazy host listeners
+          this.addEventListener('down', this._rippleDown.bind(this));
+          this.addEventListener('up', this._rippleUp.bind(this));
 
-        // We need to set the focus/blur listeners on the distributed button,
-        // not the host, since the host isn't focusable.
-        button.addEventListener('focus', this._rippleDown.bind(this));
-        button.addEventListener('blur', this._rippleUp.bind(this));
+          // Assume the button has already been distributed.
+          var button = this.getEffectiveChildren()[0];
+          this._rippleContainer = button;
+          
+          // We need to set the focus/blur listeners on the distributed button,
+          // not the host, since the host isn't focusable.
+          button.addEventListener('focus', this._rippleDown.bind(this));
+          button.addEventListener('blur', this._rippleUp.bind(this));
+        });
       },
       _rippleDown: function() {
         this.getRipple().uiDownAction();
