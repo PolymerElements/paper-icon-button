@@ -38,7 +38,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </test-fixture>
 
   <script>
-
     var b1;
     var b2;
 
@@ -48,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     function approxEqual(p1, p2) {
-      return Math.abs(p1.left - p2.left) <= 2 && Math.abs(p1.top-p2.top) <= 2;
+      return Math.abs(p1.left - p2.left) <= 2 && Math.abs(p1.top - p2.top) <= 2;
     }
 
     setup(function() {
@@ -62,7 +61,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('applies an icon specified by the `src` attribute', function() {
-
       assert.strictEqual(!!b2.$.icon.src, true);
       assert.ok(b2.$.icon.src);
     });
