@@ -1,4 +1,4 @@
-<!--
+/**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -6,14 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
-<link rel="import" href="../paper-styles/default-theme.html">
-
-<!--
+*/
+/**
 Material design: [Icon toggles](https://www.google.com/design/spec/components/buttons.html#buttons-toggle-buttons)
 
 `paper-icon-button` is a button with an image placed at the center. When the user touches
@@ -48,7 +42,7 @@ as well by setting its tabindex to -1.
 Style the button with CSS as you would a normal DOM element. If you are using the icons
 provided by `iron-icons`, they will inherit the foreground color of the button.
 
-    /* make a red "favorite" button */
+    /* make a red "favorite" button *\/
     <paper-icon-button icon="favorite" style="color: red;"></paper-icon-button>
 
 By default, the ripple is the same color as the foreground at 25% opacity. You may
@@ -67,10 +61,23 @@ Custom property | Description | Default
 @group Paper Elements
 @element paper-icon-button
 @demo demo/index.html
--->
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
 
-<dom-module id="paper-icon-button">
-  <template strip-whitespace>
+import '@polymer/iron-icon/iron-icon.js';
+import { PaperInkyFocusBehavior } from '@polymer/paper-behaviors/paper-inky-focus-behavior.js';
+import '@polymer/paper-styles/default-theme.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+const $_documentContainer = document.createElement('template');
+$_documentContainer.setAttribute('style', 'display: none;');
+
+$_documentContainer.innerHTML = `<dom-module id="paper-icon-button">
+  <template strip-whitespace="">
     <style>
       :host {
         display: inline-block;
@@ -88,7 +95,7 @@ Custom property | Description | Default
         width: 40px;
         height: 40px;
 
-        /* NOTE: Both values are needed, since some phones require the value to be `transparent`. */
+        /* NOTE: Both values are needed, since some phones require the value to be \`transparent\`. */
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -webkit-tap-highlight-color: transparent;
 
@@ -125,45 +132,46 @@ Custom property | Description | Default
       }
     </style>
 
-    <iron-icon id="icon" src="[[src]]" icon="[[icon]]" alt$="[[alt]]"></iron-icon>
+    <iron-icon id="icon" src="[[src]]" icon="[[icon]]" alt\$="[[alt]]"></iron-icon>
   </template>
 
-  <script>
-    Polymer({
-      is: 'paper-icon-button',
+  
+</dom-module>`;
 
-      hostAttributes: {role: 'button', tabindex: '0'},
+document.head.appendChild($_documentContainer.content);
+Polymer({
+  is: 'paper-icon-button',
 
-      behaviors: [Polymer.PaperInkyFocusBehavior],
+  hostAttributes: {role: 'button', tabindex: '0'},
 
-      properties: {
-        /**
-         * The URL of an image for the icon. If the src property is specified,
-         * the icon property should not be.
-         */
-        src: {type: String},
+  behaviors: [PaperInkyFocusBehavior],
 
-        /**
-         * Specifies the icon name or index in the set of icons available in
-         * the icon's icon set. If the icon property is specified,
-         * the src property should not be.
-         */
-        icon: {type: String},
+  properties: {
+    /**
+     * The URL of an image for the icon. If the src property is specified,
+     * the icon property should not be.
+     */
+    src: {type: String},
 
-        /**
-         * Specifies the alternate text for the button, for accessibility.
-         */
-        alt: {type: String, observer: '_altChanged'}
-      },
+    /**
+     * Specifies the icon name or index in the set of icons available in
+     * the icon's icon set. If the icon property is specified,
+     * the src property should not be.
+     */
+    icon: {type: String},
 
-      _altChanged: function(newValue, oldValue) {
-        var label = this.getAttribute('aria-label');
+    /**
+     * Specifies the alternate text for the button, for accessibility.
+     */
+    alt: {type: String, observer: '_altChanged'}
+  },
 
-        // Don't stomp over a user-set aria-label.
-        if (!label || oldValue == label) {
-          this.setAttribute('aria-label', newValue);
-        }
-      }
-    });
-  </script>
-</dom-module>
+  _altChanged: function(newValue, oldValue) {
+    var label = this.getAttribute('aria-label');
+
+    // Don't stomp over a user-set aria-label.
+    if (!label || oldValue == label) {
+      this.setAttribute('aria-label', newValue);
+    }
+  }
+});

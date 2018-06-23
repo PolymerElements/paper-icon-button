@@ -1,4 +1,4 @@
-<!--
+/**
 @license
 Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -6,12 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-behaviors/paper-ripple-behavior.html">
-
-<!--
+*/
+/**
 This is a lighter version of `paper-icon-button`. Its goal is performance, not
 developer ergonomics, so as a result it has fewer features than `paper-icon-button`
 itself. To use it, you must distribute a `button` containing the `iron-icon` you
@@ -41,10 +37,22 @@ Custom property | Description | Default
 @group Paper Elements
 @element paper-icon-button-light
 @demo demo/paper-icon-button-light.html
--->
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
 
-<dom-module id="paper-icon-button-light">
-  <template strip-whitespace>
+import { PaperRippleBehavior } from '@polymer/paper-behaviors/paper-ripple-behavior.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+const $_documentContainer = document.createElement('template');
+$_documentContainer.setAttribute('style', 'display: none;');
+
+$_documentContainer.innerHTML = `<dom-module id="paper-icon-button-light">
+  <template strip-whitespace="">
     <style>
       :host {
         display: inline-block;
@@ -71,7 +79,7 @@ Custom property | Description | Default
         vertical-align: middle;
         color: inherit;
         cursor: pointer;
-        /* NOTE: Both values are needed, since some phones require the value to be `transparent`. */
+        /* NOTE: Both values are needed, since some phones require the value to be \`transparent\`. */
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -webkit-tap-highlight-color: transparent;
       }
@@ -84,45 +92,46 @@ Custom property | Description | Default
     <slot></slot>
   </template>
 
-  <script>
-    Polymer({
-      is: 'paper-icon-button-light',
+  
+</dom-module>`;
 
-      behaviors: [Polymer.PaperRippleBehavior],
+document.head.appendChild($_documentContainer.content);
+Polymer({
+  is: 'paper-icon-button-light',
 
-      ready: function() {
-        Polymer.RenderStatus.afterNextRender(this, () => {
-          // Add lazy host listeners
-          this.addEventListener('down', this._rippleDown.bind(this));
-          this.addEventListener('up', this._rippleUp.bind(this));
+  behaviors: [PaperRippleBehavior],
 
-          // Assume the button has already been distributed.
-          var button = this.getEffectiveChildren()[0];
-          this._rippleContainer = button;
+  ready: function() {
+    afterNextRender(this, () => {
+      // Add lazy host listeners
+      this.addEventListener('down', this._rippleDown.bind(this));
+      this.addEventListener('up', this._rippleUp.bind(this));
 
-          // We need to set the focus/blur listeners on the distributed button,
-          // not the host, since the host isn't focusable.
-          button.addEventListener('focus', this._rippleDown.bind(this));
-          button.addEventListener('blur', this._rippleUp.bind(this));
-        });
-      },
-      _rippleDown: function() {
-        this.getRipple().uiDownAction();
-      },
-      _rippleUp: function() {
-        this.getRipple().uiUpAction();
-      },
-      /**
-       * @param {...*} var_args
-       */
-      ensureRipple: function(var_args) {
-        var lastRipple = this._ripple;
-        Polymer.PaperRippleBehavior.ensureRipple.apply(this, arguments);
-        if (this._ripple && this._ripple !== lastRipple) {
-          this._ripple.center = true;
-          this._ripple.classList.add('circle');
-        }
-      }
+      // Assume the button has already been distributed.
+      var button = this.getEffectiveChildren()[0];
+      this._rippleContainer = button;
+
+      // We need to set the focus/blur listeners on the distributed button,
+      // not the host, since the host isn't focusable.
+      button.addEventListener('focus', this._rippleDown.bind(this));
+      button.addEventListener('blur', this._rippleUp.bind(this));
     });
-  </script>
-</dom-module>
+  },
+  _rippleDown: function() {
+    this.getRipple().uiDownAction();
+  },
+  _rippleUp: function() {
+    this.getRipple().uiUpAction();
+  },
+  /**
+   * @param {...*} var_args
+   */
+  ensureRipple: function(var_args) {
+    var lastRipple = this._ripple;
+    PaperRippleBehavior.ensureRipple.apply(this, arguments);
+    if (this._ripple && this._ripple !== lastRipple) {
+      this._ripple.center = true;
+      this._ripple.classList.add('circle');
+    }
+  }
+});
