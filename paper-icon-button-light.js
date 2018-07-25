@@ -1,57 +1,22 @@
 /**
 @license
 Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-/**
-This is a lighter version of `paper-icon-button`. Its goal is performance, not
-developer ergonomics, so as a result it has fewer features than `paper-icon-button`
-itself. To use it, you must distribute a `button` containing the `iron-icon` you
-want to use:
-
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button-light.html">
-<link rel="import" href="../iron-icons/iron-icons.html">
-
-<paper-icon-button-light>
-  <button title="heart">
-    <iron-icon icon="favorite"></iron-icon>
-  </button>
-</paper-icon-button-light>
-
-Note that this button is assumed to be distributed at the startup of
-`paper-icon-button-light`. Dynamically adding a `button` to this element is
-not supported.
-
-The `title`/`disabled` etc. attributes go on the distributed button, not on the wrapper.
-
-The following custom properties and mixins are also available for styling:
-Custom property | Description | Default
-----------------|-------------|----------
-`--paper-icon-button-light-ripple` | Mixin applied to the paper ripple | `{}`
-
-@group Paper Elements
-@element paper-icon-button-light
-@demo demo/paper-icon-button-light.html
-*/
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
 import '@polymer/polymer/polymer-legacy.js';
 
-import { PaperRippleBehavior } from '@polymer/paper-behaviors/paper-ripple-behavior.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-const $_documentContainer = document.createElement('template');
-$_documentContainer.setAttribute('style', 'display: none;');
+import {PaperRippleBehavior} from '@polymer/paper-behaviors/paper-ripple-behavior.js';
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
 
-$_documentContainer.innerHTML = `<dom-module id="paper-icon-button-light">
+const template = html`
+<dom-module id="paper-icon-button-light">
   <template strip-whitespace="">
     <style>
       :host {
@@ -91,11 +56,43 @@ $_documentContainer.innerHTML = `<dom-module id="paper-icon-button-light">
     </style>
     <slot></slot>
   </template>
+</dom-module>
+`;
+template.setAttribute('style', 'display: none;');
+document.body.appendChild(template.content);
 
-  
-</dom-module>`;
+/**
+This is a lighter version of `paper-icon-button`. Its goal is performance, not
+developer ergonomics, so as a result it has fewer features than
+`paper-icon-button` itself. To use it, you must distribute a `button` containing
+the `iron-icon` you want to use:
 
-document.head.appendChild($_documentContainer.content);
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button-light.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+
+<paper-icon-button-light>
+  <button title="heart">
+    <iron-icon icon="favorite"></iron-icon>
+  </button>
+</paper-icon-button-light>
+
+Note that this button is assumed to be distributed at the startup of
+`paper-icon-button-light`. Dynamically adding a `button` to this element is
+not supported.
+
+The `title`/`disabled` etc. attributes go on the distributed button, not on the
+wrapper.
+
+The following custom properties and mixins are also available for styling:
+Custom property | Description | Default
+----------------|-------------|----------
+`--paper-icon-button-light-ripple` | Mixin applied to the paper ripple | `{}`
+
+@group Paper Elements
+@element paper-icon-button-light
+@demo demo/paper-icon-button-light.html
+*/
 Polymer({
   is: 'paper-icon-button-light',
 
