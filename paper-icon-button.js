@@ -18,7 +18,7 @@ import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 
 const template = html`
 <dom-module id="paper-icon-button">
-  <template strip-whitespace="">
+  <template strip-whitespace>
     <style>
       :host {
         display: inline-block;

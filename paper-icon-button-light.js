@@ -17,7 +17,7 @@ import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
 
 const template = html`
 <dom-module id="paper-icon-button-light">
-  <template strip-whitespace="">
+  <template strip-whitespace>
     <style>
       :host {
         display: inline-block;
