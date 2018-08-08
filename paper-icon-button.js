@@ -128,10 +128,8 @@ The following custom properties and mixins are available for styling:
 
 Custom property | Description | Default
 ----------------|-------------|----------
-`--paper-icon-button-disabled-text` | The color of the disabled button |
-`--disabled-text-color`
-`--paper-icon-button-ink-color` | Selected/focus ripple color |
-`--primary-text-color`
+`--paper-icon-button-disabled-text` | The color of the disabled button | `--disabled-text-color`
+`--paper-icon-button-ink-color` | Selected/focus ripple color | `--primary-text-color`
 `--paper-icon-button` | Mixin for a button | `{}`
 `--paper-icon-button-disabled` | Mixin for a disabled button | `{}`
 `--paper-icon-button-hover` | Mixin for button on hover | `{}`
