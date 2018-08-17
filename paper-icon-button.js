@@ -98,7 +98,9 @@ how to use a custom icon set.
 
 Example:
 
-    <link href="path/to/iron-icons/iron-icons.html" rel="import">
+    <script type="module">
+      import '@polymer/iron-icons/iron-icons.js';
+    </script>
 
     <paper-icon-button icon="favorite"></paper-icon-button>
     <paper-icon-button src="star.png"></paper-icon-button>

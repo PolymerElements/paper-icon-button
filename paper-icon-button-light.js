@@ -67,9 +67,11 @@ developer ergonomics, so as a result it has fewer features than
 `paper-icon-button` itself. To use it, you must distribute a `button` containing
 the `iron-icon` you want to use:
 
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button-light.html">
-<link rel="import" href="../iron-icons/iron-icons.html">
+<script type="module">
+  import '@polymer/iron-icon/iron-icon.js';
+  import '@polymer/paper-icon-button/paper-icon-button-light.js';
+  import '@polymer/iron-icons/iron-icons.js';
+</script>
 
 <paper-icon-button-light>
   <button title="heart">
