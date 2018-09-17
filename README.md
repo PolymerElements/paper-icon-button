@@ -25,7 +25,7 @@ Material design: [Icon toggles](https://www.google.com/design/spec/components/bu
 the button, a ripple effect emanates from the center of the button.
 
 `paper-icon-button` does not include a default icon set. To use icons from the default
-set, include `PolymerElements/iron-icons/iron-icons.js`, and use the `icon` attribute to specify which icon
+set, include `@polymer/iron-icons/iron-icons.js`, and use the `icon` attribute to specify which icon
 from the icon set to use.
 
 <!---
