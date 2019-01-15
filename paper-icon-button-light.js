@@ -15,52 +15,6 @@ import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
 
-const template = html`
-<dom-module id="paper-icon-button-light">
-  <template strip-whitespace>
-    <style>
-      :host {
-        display: inline-block;
-        position: relative;
-        width: 24px;
-        height: 24px;
-      }
-
-      paper-ripple {
-        opacity: 0.6;
-        color: currentColor;
-        @apply(--paper-icon-button-light-ripple);
-      }
-
-      :host > ::slotted(button) {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background: none;
-        border: none;
-        outline: none;
-        vertical-align: middle;
-        color: inherit;
-        cursor: pointer;
-        /* NOTE: Both values are needed, since some phones require the value to be \`transparent\`. */
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        -webkit-tap-highlight-color: transparent;
-      }
-      :host > ::slotted(button[disabled]) {
-        color: #9b9b9b;
-        pointer-events: none;
-        cursor: auto;
-      }
-    </style>
-    <slot></slot>
-  </template>
-</dom-module>
-`;
-template.setAttribute('style', 'display: none;');
-document.body.appendChild(template.content);
-
 /**
 This is a lighter version of `paper-icon-button`. Its goal is performance, not
 developer ergonomics, so as a result it has fewer features than
@@ -98,7 +52,51 @@ Custom property | Description | Default
 Polymer({
   is: 'paper-icon-button-light',
 
+  _template: html`
+    <style>
+      :host {
+        display: inline-block;
+        position: relative;
+        width: 24px;
+        height: 24px;
+      }
+
+      paper-ripple {
+        opacity: 0.6;
+        color: currentColor;
+        @apply(--paper-icon-button-light-ripple);
+      }
+
+      :host > ::slotted(button) {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: none;
+        border: none;
+        outline: none;
+        vertical-align: middle;
+        color: inherit;
+        cursor: pointer;
+        /* NOTE: Both values are needed, since some phones require the value to be \`transparent\`. */
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+      }
+      :host > ::slotted(button[disabled]) {
+        color: #9b9b9b;
+        pointer-events: none;
+        cursor: auto;
+      }
+    </style>
+    <slot></slot>
+  `,
+
   behaviors: [PaperRippleBehavior],
+
+  registered: function() {
+    this._template.setAttribute('strip-whitespace', '');
+  },
 
   ready: function() {
     afterNextRender(this, () => {
