@@ -29,7 +29,7 @@ const template = html`
       paper-ripple {
         opacity: 0.6;
         color: currentColor;
-        @apply(--paper-icon-button-light-ripple);
+        @apply --paper-icon-button-light-ripple;
       }
 
       :host > ::slotted(button) {
