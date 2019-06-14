@@ -106,7 +106,7 @@ Polymer({
 
       // Assume the button has already been distributed.
       var button = this.getEffectiveChildren()[0];
-      this._rippleContainer = button;
+      this._rippleContainer = /** @type {Element} */ (button);
 
       // We need to set the focus/blur listeners on the distributed button,
       // not the host, since the host isn't focusable.
