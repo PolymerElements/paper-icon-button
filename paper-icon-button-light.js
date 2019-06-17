@@ -45,13 +45,13 @@ Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-icon-button-light-ripple` | Mixin applied to the paper ripple | `{}`
 
-@group Paper Elements
 @element paper-icon-button-light
 @demo demo/paper-icon-button-light.html
 */
 Polymer({
   is: 'paper-icon-button-light',
 
+  /** @override */
   _template: html`
     <style>
       :host {
@@ -94,10 +94,12 @@ Polymer({
 
   behaviors: [PaperRippleBehavior],
 
+  /** @override */
   registered: function() {
     this._template.setAttribute('strip-whitespace', '');
   },
 
+  /** @override */
   ready: function() {
     afterNextRender(this, () => {
       // Add lazy host listeners
