@@ -72,13 +72,13 @@ Custom property | Description | Default
 `--paper-icon-button-disabled` | Mixin for a disabled button | `{}`
 `--paper-icon-button-hover` | Mixin for button on hover | `{}`
 
-@group Paper Elements
 @element paper-icon-button
 @demo demo/index.html
 */
 Polymer({
   is: 'paper-icon-button',
 
+  /** @override */
   _template: html`
     <style>
       :host {
@@ -145,6 +145,7 @@ Polymer({
 
   behaviors: [PaperInkyFocusBehavior],
 
+  /** @override */
   registered: function() {
     this._template.setAttribute('strip-whitespace', '');
   },
